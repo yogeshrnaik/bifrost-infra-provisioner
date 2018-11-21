@@ -6,7 +6,7 @@ import boto3
 IN_SERVICE_TIMEOUT = 600
 IN_SERVICE_INTERVAL = 20
 
-client = boto3.client('autoscaling')
+client = boto3.client('autoscaling', region_name='us-east-1')
 
 logger = logging.getLogger()
 logger.setLevel(logging.DEBUG)
