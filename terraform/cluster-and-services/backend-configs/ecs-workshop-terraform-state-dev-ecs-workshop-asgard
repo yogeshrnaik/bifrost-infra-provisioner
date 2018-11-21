@@ -1,2 +1,0 @@
-bucket = "ecs-workshop-terraform-state-dev"
-key    = "ecs-workshop-asgard-cluster.tfstate"
