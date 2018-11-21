@@ -8,8 +8,8 @@ data "aws_subnet_ids" "vpc_public_subnet_ids" {
 
 resource aws_autoscaling_group "asg" {
   name_prefix               = "${local.identifier}-asg"
-  max_size                  = 1
-  min_size                  = 1
+  min_size                  = "${var.asg_min_size}"
+  max_size                  = "${var.asg_max_size}"
   health_check_grace_period = 300
   health_check_type         = "EC2"
   launch_configuration      = "${aws_launch_configuration.launch_config.name}"

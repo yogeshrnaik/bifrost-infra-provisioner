@@ -30,3 +30,16 @@ module "ecs_cluster" {
   alb_name      = "${var.alb_name}"
   env           = "${var.env}"
 }
+
+module "service" {
+  source                = "../../terraform-modules/service"
+  cluster_name          = "${module.ecs_cluster.cluster_name}"
+  service_names         = ["${var.service_names}"]
+  service_contexts      = ["${var.service_contexts}"]
+  service_health_checks = ["${var.service_health_checks}"]
+  service_cpus          = ["${var.service_cpus}"]
+  service_memories      = ["${var.service_memories}"]
+  docker_images         = ["${var.docker_images}"]
+  vpc_name              = "${var.vpc_name}"
+  alb_name              = "${var.alb_name}"
+}
