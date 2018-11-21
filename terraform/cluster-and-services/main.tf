@@ -39,6 +39,8 @@ module "service" {
   service_health_checks = ["${var.service_health_checks}"]
   service_cpus          = ["${var.service_cpus}"]
   service_memories      = ["${var.service_memories}"]
+  service_min_instances = "${var.service_min_instances}"
+  service_max_instances = "${var.service_max_instances}"
   docker_images         = ["${var.docker_images}"]
   vpc_name              = "${var.vpc_name}"
   alb_name              = "${var.alb_name}"

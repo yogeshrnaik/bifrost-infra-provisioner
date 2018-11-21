@@ -58,7 +58,6 @@ resource "aws_ecs_service" "service" {
   task_definition                    = "${element(aws_ecs_task_definition.task_definition.*.arn, count.index)}"
   deployment_maximum_percent         = 200
   deployment_minimum_healthy_percent = 100
-  desired_count                      = 1
   health_check_grace_period_seconds  = 60
 
   load_balancer {

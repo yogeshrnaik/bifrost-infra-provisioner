@@ -27,3 +27,11 @@ variable "service_memories" {
 variable "service_cpus" {
   type = "list"
 }
+
+variable "service_min_instances" {
+  type = "list"
+}
+
+variable "service_max_instances" {
+  type = "list"
+}
