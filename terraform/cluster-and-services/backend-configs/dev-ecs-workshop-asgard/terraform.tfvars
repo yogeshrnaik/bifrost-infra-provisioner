@@ -5,6 +5,6 @@ unique_name =  "ecs-workshop"
 cluster_name =  "asgard" 
 instance_type =  "t3.micro" 
 service_names = [ "odin" ]
-service_memories = [ "512" ]
+service_memories = [ "256" ]
 service_cpus = [ "256" ]
 docker_images = [ "null" ]
