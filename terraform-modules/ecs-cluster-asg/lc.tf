@@ -6,11 +6,13 @@ data "aws_vpc" "vpc" {
 
 resource aws_launch_configuration "launch_config" {
   name_prefix          = "${local.identifier}"
-  image_id             = "ami-07eb698ce660402d2"                                     // ECS AMI
+  image_id             = "ami-07eb698ce660402d2"
   instance_type        = "${var.instance_type}"
   iam_instance_profile = "${aws_iam_instance_profile.jenkins_instance_profile.name}"
 
   security_groups = ["${aws_security_group.ec2_sg.id}"]
+
+  key_name = "${aws_key_pair.ssh_key.key_name}"
 
   user_data = <<-EOF
               #!/bin/bash
@@ -38,6 +40,11 @@ data "template_file" "user_data_ecs_cluster_part" {
 
 data "aws_alb" "alb" {
   name = "${var.alb_name}"
+}
+
+resource "aws_key_pair" "ssh_key" {
+  key_name   = "${local.identifier}-ssh-key"
+  public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQC08HTZw5HR0hkzxPe03aghKp5ZAI0U1JaPsevIgQiJSlH2ILo0IXV+LqJ9G7RPtMWjsw2gCz0GticFp7EoY2wcS25s4HCdsVHM5iXFTr/1RPPlTOxiOZkZI6rOE8EsuqQ9JAY1Njzc+NzchPvnFo+mOUVaZRh88AklK2WMEA8/SMVzn/m9hZhQPvFke2IIfrGCaSrhbsQgyHuCqv1exX4s//C7b3HMf8vlmtLEwqX+UUdCy8vkJqlsOJHdGUvezxZabWjqOWjOy3DZQCwJzVva48P6uy8jHSvrVGghstuYbw8OHhbmG5enFUTYvf1nJwrzWWePnYvarI5aR9Z0jTrfKf5v5lUEpv0cqo6syhpsEyNYo0lduh2YD7GwV94lpFZiInQtxnwIby+PU2TxV/7BBwQV48wXQA6UcyCV5J0Vb2Q+ZbkzFNRW4TKbGrUJnzwjqno9vHeYTZzcyZ1BMQ1kk3rrH40e27SQZT9AaWFn2nO9lOH7smz0v/XRTdjEabxNMG09VaXVktSc8o3AAnlgLdexKZmQbo2FhllKLV482UM5VxH04ebUxkv5qMOl6v4KjMyy3A1kfFYvNXsox7jLBzx2AQReq6h7HWxuSuRieCM6uo/lItVbrWjPFCgAtoFfrfWLwOFH/ofQgghmT7KlurL4hXEOq6BAaB+ElUqgEQ== kaushik.c02@gmail.com"
 }
 
 resource "aws_security_group" "ec2_sg" {
