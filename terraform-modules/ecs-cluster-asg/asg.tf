@@ -10,7 +10,7 @@ data "aws_sqs_queue" "ecs_asg_drain_container_instances_lambda_events_queue" {
   name = "ecs-asg-drain-container-instances-lambda-events-queue-${var.env}"
 }
 
-resource aws_autoscaling_group "asg" {
+resource "aws_autoscaling_group" "asg" {
   name                      = "${local.identifier}-asg"
   min_size                  = "${var.asg_min_size}"
   max_size                  = "${var.asg_max_size}"

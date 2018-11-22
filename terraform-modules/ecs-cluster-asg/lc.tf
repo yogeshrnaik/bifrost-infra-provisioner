@@ -4,7 +4,7 @@ data "aws_vpc" "vpc" {
   }
 }
 
-resource aws_launch_configuration "launch_config" {
+resource "aws_launch_configuration" "launch_config" {
   name_prefix          = "${local.identifier}"
   image_id             = "ami-07eb698ce660402d2"
   instance_type        = "${var.instance_type}"
