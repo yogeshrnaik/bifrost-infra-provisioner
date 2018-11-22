@@ -33,7 +33,7 @@ resource "aws_autoscaling_group" "asg" {
     EOF
 
     notification_target_arn = "${data.aws_sqs_queue.ecs_asg_drain_container_instances_lambda_events_queue.arn}"
-    role_arn = "${aws_iam_role.ecs_asg_notification_access_role.arn}"
+    role_arn                = "${aws_iam_role.ecs_asg_notification_access_role.arn}"
   }
 
   enabled_metrics = [

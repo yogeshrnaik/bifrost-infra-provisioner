@@ -1,0 +1,41 @@
+Description: >
+  Create a DNS record that is an ALIAS to the ELB/ALB for container service.
+
+Parameters:
+  HostedZoneId:
+    Description: hosted zone Id for parent domain
+    Type: String
+  DNSName:
+    Description: DNS name
+    Type: String
+  LoadBalancerHostedZoneId:
+    Description: Hosted zone Id for the DNS record published for the load balancer
+    Type: String
+  LoadBalancerDNSName:
+    Description: >
+      DNS Name for the load balancer
+      NOTE: must prefix "dualstack" in the name where applicable
+    Type: String
+  Identifier:
+    Type: String
+    Description: Identifier for weight routing policy.
+  Weight:
+    Type: Number
+    Description: Weight to be used for the DNS record.
+
+Resources:
+  RecordSetGroup:
+    Type: AWS::Route53::RecordSetGroup
+    Properties:
+      Comment: DNS record that is an ALIAS to the load balancer for container service
+      HostedZoneId: !Ref HostedZoneId
+      RecordSets:
+        -
+          Name: !Ref DNSName
+          Type: A
+          SetIdentifier: !Ref Identifier
+          Weight: !Ref Weight
+          AliasTarget:
+            HostedZoneId: !Ref LoadBalancerHostedZoneId
+            DNSName: !Ref LoadBalancerDNSName
+

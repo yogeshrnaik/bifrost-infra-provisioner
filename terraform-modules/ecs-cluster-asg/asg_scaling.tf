@@ -8,7 +8,7 @@ resource "aws_autoscaling_policy" "main_scale_up" {
 
 resource "aws_cloudwatch_metric_alarm" "low_schedulable_containers" {
   alarm_name          = "${local.identifier}-Low-schedulable-containers"
-  comparison_operator = "LessThanOrEqualToThreshold" // GreaterThanOrEqualToThreshold
+  comparison_operator = "LessThanOrEqualToThreshold"                     // GreaterThanOrEqualToThreshold
   evaluation_periods  = "1"
   metric_name         = "SchedulableContainers"
   namespace           = "CUSTOM/ECS"
