@@ -26,6 +26,8 @@ module "ecs_cluster" {
   unique_name   = "${var.unique_name}"
   cluster_name  = "${var.cluster_name}"
   instance_type = "${var.instance_type}"
+  asg_min_size  = "${var.min_instances}"
+  asg_max_size  = "${var.max_instances}"
   vpc_name      = "${var.vpc_name}"
   alb_name      = "${var.alb_name}"
   env           = "${var.env}"

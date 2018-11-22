@@ -10,6 +10,10 @@ variable "alb_name" {}
 
 variable "env" {}
 
+variable "min_instances" {}
+
+variable "max_instances" {}
+
 variable "service_names" {
   type = "list"
 }

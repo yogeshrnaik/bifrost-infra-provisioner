@@ -10,10 +10,6 @@ variable "alb_name" {}
 
 variable "env" {}
 
-variable "asg_min_size" {
-  default = 1
-}
+variable "asg_min_size" {}
 
-variable "asg_max_size" {
-  default = 5
-}
+variable "asg_max_size" {}
