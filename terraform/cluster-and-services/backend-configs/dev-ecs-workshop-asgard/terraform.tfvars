@@ -1,6 +1,6 @@
 env =  "dev" 
 vpc_name =  "dev-ecs-workshop" 
-alb_name =  "ecs-workshop-asgard-alb" 
+alb_name =  "ecs-workshop-dev-alb" 
 unique_name =  "ecs-workshop" 
 cluster_name =  "asgard" 
 instance_type =  "t3.micro" 
