@@ -12,7 +12,7 @@ resource "aws_cloudwatch_metric_alarm" "low_schedulable_containers" {
   evaluation_periods  = "1"
   metric_name         = "SchedulableContainers"
   namespace           = "CUSTOM/ECS"
-  period              = "60"
+  period              = "180"
   statistic           = "SampleCount"
   threshold           = "1"
 
@@ -38,10 +38,10 @@ resource "aws_autoscaling_policy" "main_scale_down" {
 resource "aws_cloudwatch_metric_alarm" "high_schedulable_containers" {
   alarm_name          = "${local.identifier}-High-schedulable-containers"
   comparison_operator = "GreaterThanOrEqualToThreshold"
-  evaluation_periods  = "2"
+  evaluation_periods  = "1"
   metric_name         = "SchedulableContainers"
   namespace           = "CUSTOM/ECS"
-  period              = "60"
+  period              = "120"
   statistic           = "SampleCount"
   threshold           = "3"
 
