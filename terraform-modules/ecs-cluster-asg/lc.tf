@@ -41,7 +41,7 @@ data "aws_alb" "alb" {
 }
 
 resource "aws_security_group" "ec2_sg" {
-  name_prefix = "${local.identifier}-ec2-sg"
+  name        = "${local.identifier}-ec2-sg"
   description = "${local.identifier} cluster instances security group"
   vpc_id      = "${data.aws_vpc.vpc.id}"
 

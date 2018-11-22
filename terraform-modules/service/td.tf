@@ -5,7 +5,7 @@ locals {
 
 resource "aws_cloudwatch_log_group" "ecs_log_group" {
   count             = "${local.count}"
-  name_prefix       = "${var.cluster_name}-${element(var.service_names, count.index)}-logs"
+  name              = "${var.cluster_name}-${element(var.service_names, count.index)}-logs"
   retention_in_days = 7
 }
 

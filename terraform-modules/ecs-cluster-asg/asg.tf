@@ -6,8 +6,12 @@ data "aws_subnet_ids" "vpc_public_subnet_ids" {
   }
 }
 
+data "aws_sqs_queue" "ecs_asg_drain_container_instances_lambda_events_queue" {
+  name = "ecs-asg-drain-container-instances-lambda-events-queue-${var.env}"
+}
+
 resource aws_autoscaling_group "asg" {
-  name_prefix               = "${local.identifier}-asg"
+  name                      = "${local.identifier}-asg"
   min_size                  = "${var.asg_min_size}"
   max_size                  = "${var.asg_max_size}"
   health_check_grace_period = 300
@@ -28,8 +32,8 @@ resource aws_autoscaling_group "asg" {
     }
     EOF
 
-    //notification_target_arn = "${var.ecs_asg_drain_container_instances_lambda_events_queue}"
-    //role_arn = "${aws_iam_role.ecs_asg_notification_access_role.arn}"
+    notification_target_arn = "${data.aws_sqs_queue.ecs_asg_drain_container_instances_lambda_events_queue.arn}"
+    role_arn = "${aws_iam_role.ecs_asg_notification_access_role.arn}"
   }
 
   enabled_metrics = [
