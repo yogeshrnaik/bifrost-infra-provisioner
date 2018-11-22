@@ -12,8 +12,8 @@ resource "aws_cloudwatch_metric_alarm" "low_schedulable_containers" {
   evaluation_periods  = "1"
   metric_name         = "SchedulableContainers"
   namespace           = "CUSTOM/ECS"
-  period              = "180"
-  statistic           = "SampleCount"
+  period              = "60"
+  statistic           = "Average"
   threshold           = "1"
 
   dimensions {
@@ -41,8 +41,8 @@ resource "aws_cloudwatch_metric_alarm" "high_schedulable_containers" {
   evaluation_periods  = "1"
   metric_name         = "SchedulableContainers"
   namespace           = "CUSTOM/ECS"
-  period              = "120"
-  statistic           = "SampleCount"
+  period              = "60"
+  statistic           = "Average"
   threshold           = "3"
 
   dimensions {
