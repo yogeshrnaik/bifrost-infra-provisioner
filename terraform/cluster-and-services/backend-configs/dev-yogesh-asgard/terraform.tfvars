@@ -1,0 +1,16 @@
+env =  "dev" 
+vpc_name =  "dev-ecs-workshop" 
+alb_name =  "yogesh-dev-alb" 
+unique_name =  "yogesh" 
+cluster_name =  "asgard" 
+instance_type =  "t3.nano" 
+min_instances =  "0" 
+max_instances =  "1" 
+service_names = []
+service_contexts = []
+service_health_checks = []
+service_memories = []
+service_cpus = []
+docker_images = []
+service_min_instances = []
+service_max_instances = []
